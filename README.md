@@ -1,3 +1,5 @@
-## ardulab: *collection of arduino samples*
+## ardulab
+
+*Collection of arduino samples*
 
 * **serialcmd**: testing serial communication via usb
