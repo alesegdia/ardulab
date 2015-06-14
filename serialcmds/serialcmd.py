@@ -7,8 +7,6 @@ import thread
 import serial
 import argparse
 
-ser = None
-
 class UI(tk.Frame):
     def __init__(self, ser, Master=None, **kwargs):
         self.ser = ser
@@ -16,7 +14,7 @@ class UI(tk.Frame):
         self.mainFrame = tk.Frame(self)
         self.mainFrame.pack(side='top', expand='yes', fill='both')
         self.topFrame = tk.Frame(self.mainFrame)
-        self.topFrame.pack(side='top')
+        self.topFrame.pack(side='top', fill='x')
         self.botFrame = tk.Frame(self.mainFrame)
         self.botFrame.pack(side='bottom', expand='yes', fill='both')
         self.cmdEntry = tk.Entry(self.topFrame)
