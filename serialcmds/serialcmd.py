@@ -5,10 +5,13 @@ import Tkinter as tk
 from Tkinter import *
 import thread
 import serial
-ser = serial.Serial('/dev/ttyUSB2', 9600)
+import argparse
+
+ser = None
 
 class UI(tk.Frame):
-    def __init__(self, Master=None, **kwargs):
+    def __init__(self, ser, Master=None, **kwargs):
+        self.ser = ser
         apply(tk.Frame.__init__, (self, Master), kwargs)
         self.mainFrame = tk.Frame(self)
         self.mainFrame.pack(side='top', expand='yes', fill='both')
@@ -27,8 +30,12 @@ class UI(tk.Frame):
         ser.write(self.cmdEntry.get())
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-t', '--tty', type=str, help='tty device')
+    args = parser.parse_args()
+    ser = serial.Serial(args.tty, 9600)
     Root = tk.Tk()
-    app = UI(Root)
+    app = UI(ser, Root)
     app.pack(expand='yes', fill='both')
     def dat_thread():
         i=0
